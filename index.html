@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rubix Cube</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://esm.sh/three@0.158.0"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <main id="app">
+    <header class="portfolio-header">
+      <div class="brand">
+        <span class="brand-mark">R</span>
+      </div>
+      <div class="project-status">
+        <span class="status-dot"></span>
+        CUBE EXPERIMENT · 01
+      </div>
+    </header>
+
+    <section class="scene">
+      <div id="root"></div>
+
+      <div class="scene-overlay">
+        <p class="eyebrow">EXPLORE THE DIMENSIONS</p>
+        <p class="scene-description">
+          Every face holds a different possibility.
+          Rotate the cube to explore.
+        </p>
+      </div>
+
+      <div class="cube-indicator">
+        <span class="indicator-dot"></span>
+        <span id="cube-size-label">3 × 3 × 3</span>
+      </div>
+
+      <div class="controls-hint">
+        <span>DRAG TO ORBIT</span>
+        <span class="hint-divider">/</span>
+        <span>SCROLL TO ZOOM</span>
+      </div>
+
+      <aside id="controls-panel" class="controls-panel">
+        <button
+          id="controls-toggle"
+          class="controls-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="controls-content"
+        >
+          <span class="controls-toggle-left">
+            <span class="guide-indicator"></span>
+            <span>CONTROLS</span>
+          </span>
+          <span class="controls-toggle-right">
+            <span id="controls-move-count">0 / 0 MOVES</span>
+            <span id="controls-chevron" class="controls-chevron">⌃</span>
+          </span>
+        </button>
+
+        <div id="controls-content" class="controls-content" hidden>
+          <section class="control-section">
+            <div class="control-section-heading">
+              <span>CUBE SIZE</span>
+              <strong id="size-value">3 × 3 × 3</strong>
+            </div>
+
+            <input
+              id="size-slider"
+              class="size-slider"
+              type="range"
+              min="1"
+              max="10"
+              step="1"
+              value="3"
+              aria-label="Cube size"
+            />
+
+            <div class="slider-labels">
+              <span>1 × 1 × 1</span>
+              <span>10 × 10 × 10</span>
+            </div>
+          </section>
+
+          <section class="control-section">
+            <div class="control-section-heading">
+              <span>SLICE ROTATION</span>
+              <span class="control-subheading">SELECT A LAYER</span>
+            </div>
+
+            <div class="axis-control">
+              <div class="axis-label" aria-label="Y axis">
+                <kbd>Y</kbd>
+              </div>
+              <div id="axis-y-buttons" class="slice-buttons" aria-label="Y axis slices"></div>
+            </div>
+
+            <div class="axis-control">
+              <div class="axis-label" aria-label="X axis">
+                <kbd>X</kbd>
+              </div>
+              <div id="axis-x-buttons" class="slice-buttons" aria-label="X axis slices"></div>
+            </div>
+
+            <div class="axis-control">
+              <div class="axis-label" aria-label="Z axis">
+                <kbd>Z</kbd>
+              </div>
+              <div id="axis-z-buttons" class="slice-buttons" aria-label="Z axis slices"></div>
+            </div>
+
+            <p class="control-note">
+              Hold Y, X, or Z, then press a number to rotate a slice.
+              Hold SHIFT to reverse the turn.
+            </p>
+          </section>
+
+          <section class="control-section move-history-section">
+            <div class="control-section-heading history-heading">
+              <span>MOVE HISTORY</span>
+              <div class="history-actions">
+                <button id="undo-move" class="action-button" type="button" disabled aria-label="Undo move" title="Undo">
+                  ↶
+                </button>
+                <button id="redo-move" class="action-button" type="button" disabled aria-label="Redo move" title="Redo">
+                  ↷
+                </button>
+                <button id="scramble-cube" class="text-button" type="button">
+                  SCRAMBLE
+                </button>
+                <button id="clear-history" class="text-button" type="button" disabled>
+                  CLEAR
+                </button>
+              </div>
+            </div>
+
+            <div id="move-history" class="move-history" aria-live="polite">
+              <p class="history-empty">No moves yet</p>
+            </div>
+          </section>
+
+          <p id="rotation-status" class="rotation-status" aria-live="polite">
+            Ready for a turn
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="portfolio-footer">
+      <span>DESIGN · CODE · EXPERIMENTATION</span>
+      <span>MORE DIMENSIONS COMING SOON ↗</span>
+    </footer>
+  </main>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
